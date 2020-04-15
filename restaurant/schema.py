@@ -167,3 +167,8 @@ class Followed(graphene.Mutation):
             _followed = restaurant.follow.add(user)
 
         return Followed(followed=_followed)
+
+
+class Mutation(graphene.ObjectType):
+    liked = Liked.Field()
+    followed = Followed.Field()

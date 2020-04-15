@@ -26,7 +26,7 @@ def get_secret(setting, secret=secret):
 
 AWS_ACCESS_KEY_ID = get_secret('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = get_secret('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'baedal'
+AWS_STORAGE_BUCKET_NAME = 'baedalapp'
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 

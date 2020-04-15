@@ -1,0 +1,9 @@
+graphene_django
+django_storages
+boto3
+dj-database-url
+pillow
+django-graphql-jwt
+django-filter
+graphene-file-upload
+djagno-cors-headers

@@ -19,7 +19,7 @@ class RestaurantCategory(models.Model):
 
 class Restaurant(models.Model):
     admin = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    category = models.ForeignKey(on_delete=models.CASCADE)
+    category = models.ForeignKey(RestaurantCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     logo = models.ImageField(upload_to='logo')
     address = models.CharField(max_length=50)

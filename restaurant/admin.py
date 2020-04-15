@@ -22,7 +22,7 @@ class RestaurantAdmin(admin.ModelAdmin):
 
 
 class AreaAdmin(admin.ModelAdmin):
-    list_display = ['name', 'region']
+    list_display = ['name']
 
 
 class ReviewAdmin(admin.ModelAdmin):

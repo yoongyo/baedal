@@ -1,6 +1,7 @@
 import graphene
 from graphene_django.types import DjangoObjectType
-from .models import RestaurantCategory, Restaurant, MenuCategory, Menu, Area, Review, PayMethod
+from .models import RestaurantCategory, Restaurant, MenuCategory, Menu, Area, Review, PayMethod, \
+    MenuItemAddCategory, MenuItemAdd
 from django.contrib.auth.models import User
 
 
@@ -43,6 +44,16 @@ class ReviewType(DjangoObjectType):
         model = Review
 
 
+class MenuItemAddType(DjangoObjectType):
+    class Meta:
+        model = MenuItemAdd
+
+
+class MenuItemAddCategoryType(DjangoObjectType):
+    class Meta:
+        model = MenuItemAddCategory
+
+
 class Query(graphene.AbstractType):
     all_restaurantCategory = graphene.List(RestaurantCategoryType)
     restaurant = graphene.Field(RestaurantType,
@@ -67,6 +78,12 @@ class Query(graphene.AbstractType):
     all_area = graphene.List(AreaType)
     all_review = graphene.List(ReviewType,
                                restaurant=graphene.Int())
+
+    all_menuItemAddCategory = graphene.List(MenuItemAddCategoryType,
+                                            menu=graphene.Int()
+                                            )
+    all_menuItemAdd = graphene.List(MenuItemAddType,
+                                    category=graphene.Int())
 
     def resolve_all_area(self, context, **kwargs):
         return Area.objects.all()
@@ -134,6 +151,16 @@ class Query(graphene.AbstractType):
             return Menu.objects.get(category__id=category)
 
         return None
+
+    def resolve_menuItemAddCategory(self, info, **kwargs):
+        menu = kwargs.get('menu')
+        if menu is not None:
+            return MenuItemAddCategory.objects.filter(menu=menu)
+        
+    def resolve_menuItemAdd(self, info, **kwargs):
+        category = kwargs.get('category')
+        if category is not None:
+            return MenuItemAdd.objects.filter(category=category)
 
 
 class Liked(graphene.Mutation):

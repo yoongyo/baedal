@@ -17,6 +17,13 @@ class RestaurantCategory(models.Model):
         return self.name
 
 
+class PayMethod(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str(self):
+        return self.name
+
+
 class Restaurant(models.Model):
     admin = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.ForeignKey(RestaurantCategory, on_delete=models.CASCADE)
@@ -33,8 +40,9 @@ class Restaurant(models.Model):
     businessLicenseMutualName = models.CharField(max_length=50)
     businessLicenseNumber = models.CharField(max_length=50)
 
+    pay_method = models.ManyToManyField(PayMethod, related_name='pay_method')
+
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
-    follow = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='follow', blank=True)
 
     representative_menu = models.CharField(max_length=50)
     delivery_requirement_time = models.CharField(max_length=50)

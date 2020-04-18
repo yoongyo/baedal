@@ -67,12 +67,6 @@ class MenuCategory(models.Model):
         return self.name
 
 
-
-
-
-
-
-
 class Menu(models.Model):
     admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
@@ -93,11 +87,17 @@ class MenuItemAddCategory(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
 
 class MenuItemAdd(models.Model):
     category = models.ForeignKey(MenuItemAddCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     price = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
 
 class Review(models.Model):

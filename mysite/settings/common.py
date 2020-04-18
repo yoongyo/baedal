@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     # new
     'restaurant',
     'accounts',
+    'announcement',
+    'admins',
+    'order',
     'graphene_django',
     'corsheaders'
 ]

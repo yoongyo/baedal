@@ -156,7 +156,7 @@ class Query(graphene.AbstractType):
         menu = kwargs.get('menu')
         if menu is not None:
             return MenuItemAddCategory.objects.filter(menu=menu)
-        
+
     def resolve_menuItemAdd(self, info, **kwargs):
         category = kwargs.get('category')
         if category is not None:
